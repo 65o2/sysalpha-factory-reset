@@ -1,0 +1,3 @@
+[submodule "motorola-6800-assembler"]
+	path = motorola-6800-assembler
+	url = https://github.com/65o2/motorola-6800-assembler.git

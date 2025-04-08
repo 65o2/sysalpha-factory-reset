@@ -1,0 +1,27 @@
+*******************************************************************************
+* Simple 6800 program to clear the RAM contents at $0100 - $01FF
+*  from https://github.com/65o2/sysalpha-factory-reset
+*******************************************************************************
+        nam     clear_sram
+        org     $5000
+        fill    $01,8192     NOP
+*
+sram    equ     #$0100
+reset   sei
+*
+        ldx     #$0100
+        ldaa    #$ff
+
+clr_ram staa    0,X
+        inx
+        cpx     #$0200
+        bne     clr_ram
+*
+lock    beq     lock
+*
+        org     $7FFA   Reset/IRQ vectors
+        fdb     reset
+        fdb     reset
+        fdb     reset
+*
+        end
